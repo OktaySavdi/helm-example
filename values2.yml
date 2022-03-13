@@ -5,7 +5,7 @@ appname: istio
 namespace: gitops-lab
 
 ## Set replicaset
-replicaCount: 1
+replicaCount: 2
 
 ## Specify an imagePullPolicy (Required)
 ## It's recommended to change this to 'Always' if the image tag is 'latest'
@@ -183,17 +183,17 @@ ingress:
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
 resources: {}
-   #limits:
-   #  cpu: 100m
-   #  memory: 128Mi
-   #requests:
-   #  cpu: 100m
-   #  memory: 128Mi
+  limits:
+    cpu: 10m
+    memory: 128Mi
+  requests:
+    cpu: 30m
+    memory: 200Mi
 
 ## Pod autoscaling
 ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
 autoscaling:
-  enabled: false
+  enabled: true
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 80
